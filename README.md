@@ -55,3 +55,5 @@ weather-dashboard/
 └── README.md
 
 This README file provides an overview of the project, setup instructions, and usage details. Adjust the repository URL and API key placeholder as needed.
+
+images/WeatherDashSS.png
