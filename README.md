@@ -37,6 +37,10 @@ A weather dashboard application that allows users to search for current weather 
 
 4. Open `index.html` in your browser to use the application.
 
+## ScreenShot
+
+![image](https://github.com/user-attachments/assets/47aee477-4556-413e-831c-1e79bb326980)
+
 ## API Key
 
 The application uses the OpenWeather API. You need to replace the placeholder API key in `frontend/script.js` with your own API key:
@@ -55,7 +59,3 @@ weather-dashboard/
 └── README.md
 
 This README file provides an overview of the project, setup instructions, and usage details. Adjust the repository URL and API key placeholder as needed.
-
-## ScreenShot
-
-![image](https://github.com/user-attachments/assets/47aee477-4556-413e-831c-1e79bb326980)
