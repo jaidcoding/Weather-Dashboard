@@ -2,6 +2,10 @@
 
 A weather dashboard application that allows users to search for current weather and 5-day forecasts for cities. The application uses the OpenWeather API to fetch weather data and stores search history locally and in a backend server.
 
+## Deployed Website
+
+https://jaidcoding.github.io/Weather-Dashboard/
+
 ## Features
 
 - Search for current weather and 5-day forecast by city name
