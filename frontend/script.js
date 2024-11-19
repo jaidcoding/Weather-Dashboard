@@ -1,5 +1,5 @@
-
 function initPage() {
+    // Get references to HTML elements
     const cityEl = document.getElementById("enter-city");
     const searchEl = document.getElementById("search-button");
     const clearEl = document.getElementById("clear-history");
@@ -17,10 +17,12 @@ function initPage() {
     const APIKey = "e227e14d6a73ac84324ae69a9424b120";
 
     function getWeather(cityName) {
+        // Fetch current weather data from OpenWeather API
         const queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKey}`;
         axios.get(queryURL).then(function (response) {
             todayweatherEl.classList.remove("d-none");
 
+            // Display current weather information
             const currentDate = new Date(response.data.dt * 1000);
             const day = currentDate.getDate();
             const month = currentDate.getMonth() + 1;
@@ -33,8 +35,10 @@ function initPage() {
             currentHumidityEl.innerHTML = `Humidity: ${response.data.main.humidity}%`;
             currentWindEl.innerHTML = `Wind Speed: ${response.data.wind.speed} MPH`;
 
+            // Store city in backend
             storeCityInBackend(response.data.name);
 
+            // Fetch UV index data
             const lat = response.data.coord.lat;
             const lon = response.data.coord.lon;
             const UVQueryURL = `https://api.openweathermap.org/data/2.5/uvi/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&cnt=1`;
@@ -52,6 +56,7 @@ function initPage() {
                 currentUVEl.append(UVIndex);
             });
 
+            // Fetch 5-day forecast data
             const cityID = response.data.id;
             const forecastQueryURL = `https://api.openweathermap.org/data/2.5/forecast?id=${cityID}&appid=${APIKey}`;
             axios.get(forecastQueryURL).then(function (response) {
@@ -85,17 +90,20 @@ function initPage() {
     }
 
     function storeCityInBackend(cityName) {
+        // Store city name in backend
         axios.post('/store-city', { city: cityName })
             .then(response => console.log('City stored:', response.data))
             .catch(error => console.error('Error storing city:', error));
     }
 
     function deleteCityFromBackend(cityId) {
+        // Delete city from backend
         axios.delete(`/delete-city/${cityId}`)
             .then(response => console.log('City deleted:', response.data))
             .catch(error => console.error('Error deleting city:', error));
     }
 
+    // Event listener for search button
     searchEl.addEventListener("click", function () {
         const searchTerm = cityEl.value.trim();
         if (!searchTerm) {
@@ -108,6 +116,7 @@ function initPage() {
         renderSearchHistory();
     });
 
+    // Event listener for clear history button
     clearEl.addEventListener("click", function () {
         localStorage.clear();
         searchHistory = [];
@@ -115,10 +124,12 @@ function initPage() {
     });
 
     function k2f(K) {
+        // Convert Kelvin to Fahrenheit
         return Math.floor((K - 273.15) * 1.8 + 32);
     }
 
     function renderSearchHistory() {
+        // Render search history
         historyEl.innerHTML = "";
         for (let i = 0; i < searchHistory.length; i++) {
             const historyItem = document.createElement("div");
@@ -149,6 +160,7 @@ function initPage() {
         }
     }
 
+    // Initial render of search history and fetch weather for last searched city
     renderSearchHistory();
     if (searchHistory.length > 0) {
         getWeather(searchHistory[searchHistory.length - 1]);
