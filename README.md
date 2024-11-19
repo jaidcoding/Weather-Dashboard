@@ -56,4 +56,6 @@ weather-dashboard/
 
 This README file provides an overview of the project, setup instructions, and usage details. Adjust the repository URL and API key placeholder as needed.
 
-![image](https://github.com/user-attachments/assets/a4cd9858-9215-4bbf-be6c-788b62563c28)
+## ScreenShot
+
+![image](https://github.com/user-attachments/assets/47aee477-4556-413e-831c-1e79bb326980)
